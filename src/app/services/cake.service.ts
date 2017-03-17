@@ -9,6 +9,7 @@ export class CakeService {
 
   constructor() {
     this.nextCake = new Date();
+    this.nextCake.setDate(21);
     this.nextCake.setHours(13);
     this.nextCake.setMinutes(30);
     // this.http = http;

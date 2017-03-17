@@ -33,7 +33,7 @@ export class CakeComponent implements OnInit {
     let difference = nextCake.valueOf() - now.valueOf();
     let seconds = Math.floor(difference / 1000) % 60;
     let minutes = Math.floor((difference / (1000 * 60)) % 60);
-    let hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+    let hours = Math.floor((difference / (1000 * 60 * 60)));
     this.secondsRemaining = seconds < 10 ? "0" + seconds : "" + seconds;
     this.minutesRemaining = minutes < 10 ? "0" + minutes: "" + minutes;
     this.hoursRemaining = "" + hours;
