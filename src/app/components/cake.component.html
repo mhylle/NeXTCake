@@ -4,3 +4,13 @@
   <div><span class="caketime">{{hoursRemaining}}:{{minutesRemaining}}:{{secondsRemaining}}</span></div>
   <div><img src="../../assets/Chocolate_Nutella_Cake3.jpg" height="300"> </div>
 </div>
+
+<div *ngIf="cakeGivings">
+  There are {{cakeGivings.length}} cakegivings in total
+</div>
+<div *ngIf="!cakeGivings">
+  There are currently no cakegivings :(
+</div>
+<div *ngFor="let cakegiving of cakeGivings">
+  {{cakegiving.id}}
+</div>

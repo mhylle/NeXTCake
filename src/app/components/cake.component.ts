@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs";
 import {CakeService} from "../services/cake.service";
+import {CakeGiving} from "../CakeGiving";
 
 @Component({
   moduleId: module.id,
@@ -14,13 +15,16 @@ export class CakeComponent implements OnInit {
   private hoursRemaining: string;
   private minutesRemaining: string;
   private secondsRemaining: string;
+  private cakeGivings: CakeGiving[];
 
   constructor(private cakeService: CakeService) {
     this.nextCake = this.cakeService.getNextCake();
   }
 
   ngOnInit() {
-
+    this.cakeService.getCakeGivings().subscribe(cakeGivings => {
+      this.cakeGivings = cakeGivings
+    });
     let timer = Observable.timer(0, 1000);
     timer.subscribe(t => {
       this.updateTimeToCake(t);
@@ -35,7 +39,7 @@ export class CakeComponent implements OnInit {
     let minutes = Math.floor((difference / (1000 * 60)) % 60);
     let hours = Math.floor((difference / (1000 * 60 * 60)));
     this.secondsRemaining = seconds < 10 ? "0" + seconds : "" + seconds;
-    this.minutesRemaining = minutes < 10 ? "0" + minutes: "" + minutes;
+    this.minutesRemaining = minutes < 10 ? "0" + minutes : "" + minutes;
     this.hoursRemaining = "" + hours;
   }
 }

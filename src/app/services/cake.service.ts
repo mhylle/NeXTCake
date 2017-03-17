@@ -1,27 +1,30 @@
 import {Injectable} from "@angular/core";
 import "rxjs/Rx";
+import {FirebaseListObservable, AngularFire} from "angularfire2";
+import {CakeGiving} from "../CakeGiving";
 
 @Injectable()
 export class CakeService {
   private nextCake: Date;
-  // http: any;
-  // patientsUrl: string;
+  cakeGivings: FirebaseListObservable<CakeGiving[]>;
 
-  constructor() {
+  constructor(private _af: AngularFire) {
     this.nextCake = new Date();
     this.nextCake.setDate(21);
     this.nextCake.setHours(13);
     this.nextCake.setMinutes(30);
-    // this.http = http;
-    // this.patientsUrl = "http://localhost:8080/EventArchitecture/patients/";
   }
 
   getNextCake() {
     return this.nextCake;
   }
-  // getPatients() {
-  //   return this.http.get(this.patientsUrl)
-  //     .map(res => res.json());
-  // }
 
+  getCakeGivings() {
+    this.cakeGivings = this._af.database.list('/cakegivings') as FirebaseListObservable<CakeGiving[]>;
+    return this.cakeGivings;
+  }
+
+  addCakeGiving(newCakeGiving) {
+    return this.cakeGivings.push(newCakeGiving);
+  }
 }
