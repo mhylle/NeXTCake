@@ -1,1 +1,55 @@
+<div *ngIf="menuShown">
+  <button>Tilføj kage</button>
+</div>
+<nav class="navbar navbar-default">
+  <ul class="nav navbar-nav">
+    <li class="dropdown">
+      <a href="#" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bars" aria-hidden="true"></i></a>
+      <ul class="dropdown-menu">
+        <li><a href="#" (click)="doAddCake()">Add cake</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 <nextcake></nextcake>
+<modal #addCake (onClose)="closed()">
+  <form #modalForm="ngForm">
+    <modal-body>
+      <mhcard [cardStatus]="cardStatus" [cardName]="">
+        <div class="row">
+          <div class="col-md-1">Dato:</div>
+          <div class="col-md-4">
+            <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
+          </div>
+          <div class="col-md-1"><i class="fa fa-calendar" aria-hidden="true" style="cursor: pointer"
+                                   (click)="d.toggle()"></i></div>
+        </div>
+        <div class="row">
+          <div class="col-md-1">Tid:</div>
+          <div class="col-md-5">
+            <ngb-timepicker [(ngModel)]="time" name="time"></ngb-timepicker>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-md-1"></div>
+          <div class="col-md-2">Sted:</div>
+          <div class="col-md-8"><input type="text" name="location" [(ngModel)]="location" required></div>
+          <div class="col-md-1"></div>
+        </div>
+        <div class="row form-group">
+          <div class="col-md-1"></div>
+          <div class="col-md-2">Giver:</div>
+          <div class="col-md-8"><input type="text" name="giver" [(ngModel)]="giver"></div>
+          <div class="col-md-1"></div>
+        </div>
+      </mhcard>
+    </modal-body>
+    <modal-footer>
+      <button type="button" class="btn btn-default" data-dismiss="modal" (click)="addCake.dismiss()">Cancel
+      </button>
+      <button type="button" class="btn btn-primary" [disabled]="!modalForm.valid" (click)="addCake.close()">Save
+      </button>
+    </modal-footer>
+  </form>
+</modal>
+

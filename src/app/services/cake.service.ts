@@ -1,30 +1,31 @@
 import {Injectable} from "@angular/core";
 import "rxjs/Rx";
-import {FirebaseListObservable, AngularFire} from "angularfire2";
-import {CakeGiving} from "../CakeGiving";
+import {Http, Headers} from "@angular/http";
 
 @Injectable()
 export class CakeService {
+  http: any;
+  apiKey: string;
+  cakeGivingsUrl: string;
   private nextCake: Date;
-  cakeGivings: FirebaseListObservable<CakeGiving[]>;
 
-  constructor(private _af: AngularFire) {
+  constructor(http: Http) {
     this.nextCake = new Date();
     this.nextCake.setDate(21);
     this.nextCake.setHours(13);
     this.nextCake.setMinutes(30);
-  }
-
-  getNextCake() {
-    return this.nextCake;
+    this.http = http;
+    this.apiKey = 'xq37tVdH_5xlvXu9RLsTGQwe3JszAIEc';
+    this.cakeGivingsUrl = 'https://api.mlab.com/api/1/databases/cakegivings/collections/cakegivings';
   }
 
   getCakeGivings() {
-    this.cakeGivings = this._af.database.list('/cakegivings') as FirebaseListObservable<CakeGiving[]>;
-    return this.cakeGivings;
+    return this.http.get(this.cakeGivingsUrl + '?apiKey=' + this.apiKey).map(res => res.json());
   }
 
   addCakeGiving(newCakeGiving) {
-    return this.cakeGivings.push(newCakeGiving);
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.cakeGivingsUrl + '?apiKey=' + this.apiKey, JSON.stringify(newCakeGiving), {headers: headers});
   }
 }

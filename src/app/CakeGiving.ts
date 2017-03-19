@@ -1,6 +1,8 @@
 export interface CakeGiving {
   id: string;
-  time: Date;
+  date: any;
+  time: any;
+  datetime?: Date;
   location?: string;
   giver?: string
 }

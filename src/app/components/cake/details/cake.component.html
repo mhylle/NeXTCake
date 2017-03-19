@@ -1,0 +1,22 @@
+<div class="text-center" style="margin-top:200px">
+  <div *ngIf="nextCake">Næste gang der er kage er: {{nextCake.datetime | date: 'EEEE dd/MM/yyyy'}} kl.
+    {{nextCake.datetime | date: 'HH:mm'}}
+  </div>
+  <div>
+    <span *ngIf="nextCake">Kagen serveres i {{nextCake.location}}</span>
+    <span *ngIf="nextCake && nextCake.giver">af {{nextCake.giver}}.</span>
+  </div>
+
+  <div>Der er nu:</div>
+  <div><span class="caketime">{{hoursRemaining}}:{{minutesRemaining}}:{{secondsRemaining}}</span></div>
+  <div>Til at kagen serveres.</div>
+  <div><img src="../../../../assets/Chocolate_Nutella_Cake3.jpg" height="300"></div>
+
+
+  <div *ngIf="cakeGivings">
+    I denne uge kan du se frem til  {{cakeGivings.length}} kager exklusiv fredags kagen.
+  </div>
+  <div *ngIf="!cakeGivings">
+    Der bliver ikke givet kage i den her uge :(
+  </div>
+</div>
