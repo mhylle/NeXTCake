@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import "rxjs/Rx";
 import {Http, Headers} from "@angular/http";
+import {UserService} from "./user.service";
 
 @Injectable()
 export class CakeService {
@@ -9,7 +10,7 @@ export class CakeService {
   cakeGivingsUrl: string;
   private nextCake: Date;
 
-  constructor(http: Http) {
+  constructor(http: Http, private userService: UserService) {
     this.nextCake = new Date();
     this.nextCake.setDate(21);
     this.nextCake.setHours(13);
@@ -24,6 +25,11 @@ export class CakeService {
   }
 
   addCakeGiving(newCakeGiving) {
+    let user = this.userService.getUser(newCakeGiving.giver);
+    if (!user) {
+      this.userService.addUser(newCakeGiving.giver);
+    }
+
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.post(this.cakeGivingsUrl + '?apiKey=' + this.apiKey, JSON.stringify(newCakeGiving), {headers: headers});

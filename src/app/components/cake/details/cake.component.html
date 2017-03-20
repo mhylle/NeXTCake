@@ -1,4 +1,6 @@
 <div class="text-center" style="margin-top:100px">
+  <div *ngIf="currentCake" class="hit-the-floor">Der er kage nu!</div>
+<div *ngIf="!currentCake">
   <div>Næste gang der er kage er:
   </div>
   <div class="hit-the-floor-small" *ngIf="nextCake">{{nextCake.datetime | date: 'EEEE dd/MM/yyyy'}} kl.
@@ -11,12 +13,13 @@
 
   <div>Der er nu:</div>
   <div><span class="caketime hit-the-floor">{{hoursRemaining}}:{{minutesRemaining}}:{{secondsRemaining}}</span></div>
-  <div>Til at kagen serveres.</div>
-  <div><img src="../../../../assets/Chocolate_Nutella_Cake3.jpg" height="300"></div>
+
+  <div class="lowercake">Til at kagen serveres.</div>
+</div>  <div><img src="../../../../assets/Chocolate_Nutella_Cake3.jpg" height="300"></div>
 
 
   <div *ngIf="cakeGivings">
-    I denne uge kan du se frem til  {{cakeGivings.length}} kager exklusiv fredags kagen.
+    I denne uge kan du se frem til {{cakeGivings.length}} kager eksklusiv fredags kagen.
   </div>
   <div *ngIf="!cakeGivings">
     Der bliver ikke givet kage i den her uge :(

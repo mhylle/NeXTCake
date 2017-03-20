@@ -11,6 +11,7 @@ import {Ng2Bs3ModalModule} from "ng2-bs3-modal/ng2-bs3-modal";
 import {MhCardComponent} from "./directives/mh-card/mhcard.directive";
 import {CreateCakeComponent} from "./components/cake/create/createcake.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {UserService} from "./services/user.service";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'}
@@ -39,7 +40,7 @@ export const firebaseConfig = {
     Ng2Bs3ModalModule,
     NgbModule.forRoot()
   ],
-  providers: [CakeService],
+  providers: [CakeService, UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {

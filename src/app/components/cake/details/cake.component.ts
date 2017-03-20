@@ -16,6 +16,7 @@ export class CakeComponent implements OnInit {
   private minutesRemaining: string;
   private secondsRemaining: string;
   private cakeGivings: CakeGiving[];
+  private currentCake: CakeGiving;
 
   constructor(private cakeService: CakeService) {
   }
@@ -43,22 +44,43 @@ export class CakeComponent implements OnInit {
   updateTimeToCake(tick) {
     let now = new Date();
     if (this.cakeGivings && this.cakeGivings.length > 0) {
-      this.nextCake = this.cakeGivings[0];
-      let timeOfCake = new Date();
-      timeOfCake.setFullYear(this.nextCake.date.year);
-      timeOfCake.setMonth(this.nextCake.date.month - 1);
-      timeOfCake.setDate(this.nextCake.date.day);
-      timeOfCake.setHours(this.nextCake.time.hour);
-      timeOfCake.setMinutes(this.nextCake.time.minute);
-      timeOfCake.setSeconds(this.nextCake.time.second);
-      this.nextCake.datetime = timeOfCake;
-      let difference = timeOfCake.valueOf() - now.valueOf();
-      let seconds = Math.floor(difference / 1000) % 60;
-      let minutes = Math.floor((difference / (1000 * 60)) % 60);
-      let hours = Math.floor((difference / (1000 * 60 * 60)));
-      this.secondsRemaining = seconds < 10 ? "0" + seconds : "" + seconds;
-      this.minutesRemaining = minutes < 10 ? "0" + minutes : "" + minutes;
-      this.hoursRemaining = "" + hours;
+      for (let i = 0; i < this.cakeGivings.length; i++) {
+        let timeOfCake = this.calculateDate(this.cakeGivings[i]);
+        let timeDifference = (timeOfCake.valueOf() - now.valueOf());
+        if (timeDifference < 0) {
+          let minutes = Math.floor((Math.abs(timeDifference) / (1000 * 60)) % 60);
+          let hours = Math.floor((Math.abs(timeDifference) / (1000 * 60 * 60)));
+          if (minutes <= 30 && hours == 0) {
+            console.log("updated currentcake, difference was: hours: " + hours + " " + minutes);
+            this.currentCake = this.cakeGivings[i];
+            break;
+          } else {
+            console.log("nullified currentcake!, hours: " + hours + " minutes: " + minutes);
+            this.currentCake = null;
+          }
+        } else {
+          this.nextCake = this.cakeGivings[i];
+          this.nextCake.datetime = timeOfCake;
+          let seconds = Math.floor(timeDifference / 1000) % 60;
+          let minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
+          let hours = Math.floor((timeDifference / (1000 * 60 * 60)));
+          this.secondsRemaining = seconds < 10 ? "0" + seconds : "" + seconds;
+          this.minutesRemaining = minutes < 10 ? "0" + minutes : "" + minutes;
+          this.hoursRemaining = "" + hours;
+          break;
+        }
+      }
     }
+  }
+
+  private calculateDate(cake: CakeGiving) {
+    let timeOfCake = new Date();
+    timeOfCake.setFullYear(cake.date.year);
+    timeOfCake.setMonth(cake.date.month - 1);
+    timeOfCake.setDate(cake.date.day);
+    timeOfCake.setHours(cake.time.hour);
+    timeOfCake.setMinutes(cake.time.minute);
+    timeOfCake.setSeconds(cake.time.second);
+    return timeOfCake;
   }
 }
