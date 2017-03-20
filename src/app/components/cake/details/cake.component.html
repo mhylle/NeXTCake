@@ -1,5 +1,5 @@
 <div class="text-center" style="margin-top:100px">
-  <div *ngIf="currentCake" class="hit-the-floor">Der er kage nu!</div>
+  <div *ngIf="currentCake" class="hit-the-floor">YAY! Der er kage nu! </div>
 <div *ngIf="!currentCake">
   <div>Næste gang der er kage er:
   </div>
@@ -19,7 +19,7 @@
 
 
   <div *ngIf="cakeGivings">
-    I denne uge kan du se frem til {{cakeGivings.length}} kager eksklusiv fredags kagen.
+    I denne uge for vi {{cakeGivings.length}} kager eksklusiv fredags kagen.
   </div>
   <div *ngIf="!cakeGivings">
     Der bliver ikke givet kage i den her uge :(
