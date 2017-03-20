@@ -2,7 +2,7 @@ import {Component, ViewChild} from "@angular/core";
 import {ModalComponent} from "ng2-bs3-modal/components/modal";
 import {DatePickerOptions, DateModel} from "ng2-datepicker";
 import {CakeService} from "./services/cake.service";
-import {NgbTimeStruct} from "@ng-bootstrap/ng-bootstrap";
+import {NgbTimeStruct, NgbTimepickerConfig} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-root',
@@ -22,11 +22,12 @@ export class AppComponent {
 
   private cardStatus: string;
 
-  constructor(private cakeService: CakeService) {
+  constructor(private cakeService: CakeService, timePickerConfig: NgbTimepickerConfig) {
     this.cardStatus = "Ny kage givning";
     this.options = new DatePickerOptions();
     this.options.firstWeekdaySunday = false;
     this.options.style = "normal";
+    timePickerConfig.spinners = false;
   }
 
   toggleMenu() {

@@ -17,6 +17,7 @@
     <modal-body>
       <mhcard [cardStatus]="cardStatus" [cardName]="">
         <div class="row">
+          <div class="col-md-1"></div>
           <div class="col-md-1">Dato:</div>
           <div class="col-md-4">
             <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
@@ -25,29 +26,30 @@
                                    (click)="d.toggle()"></i></div>
         </div>
         <div class="row">
+          <div class="col-md-1"></div>
           <div class="col-md-1">Tid:</div>
           <div class="col-md-5">
-            <ngb-timepicker [(ngModel)]="time" name="time"></ngb-timepicker>
+            <ngb-timepicker [(ngModel)]="time" name="time" ></ngb-timepicker>
           </div>
         </div>
-        <div class="row form-group">
+        <div class="row">
           <div class="col-md-1"></div>
-          <div class="col-md-2">Sted:</div>
+          <div class="col-md-1">Sted:</div>
           <div class="col-md-8"><input type="text" name="location" [(ngModel)]="location" required></div>
           <div class="col-md-1"></div>
         </div>
-        <div class="row form-group">
+        <div class="row">
           <div class="col-md-1"></div>
-          <div class="col-md-2">Giver:</div>
+          <div class="col-md-1">Giver:</div>
           <div class="col-md-8"><input type="text" name="giver" [(ngModel)]="giver"></div>
           <div class="col-md-1"></div>
         </div>
       </mhcard>
     </modal-body>
     <modal-footer>
-      <button type="button" class="btn btn-default" data-dismiss="modal" (click)="addCake.dismiss()">Cancel
+      <button type="button" class="btn btn-default" data-dismiss="modal" (click)="addCake.dismiss()">Fortryd
       </button>
-      <button type="button" class="btn btn-primary" [disabled]="!modalForm.valid" (click)="addCake.close()">Save
+      <button type="button" class="btn btn-primary" [disabled]="!modalForm.valid" (click)="addCake.close()">Gem
       </button>
     </modal-footer>
   </form>

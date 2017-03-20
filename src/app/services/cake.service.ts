@@ -25,10 +25,10 @@ export class CakeService {
   }
 
   addCakeGiving(newCakeGiving) {
-    let user = this.userService.getUser(newCakeGiving.giver);
-    if (!user) {
-      this.userService.addUser(newCakeGiving.giver);
-    }
+    // let user = this.userService.getUser(newCakeGiving.giver);
+    // if (!user) {
+    //   this.userService.addUser(newCakeGiving.giver);
+    // }
 
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');

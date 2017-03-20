@@ -1,4 +1,4 @@
-<div [ngClass]="{status_selected: active}">
+<div [ngClass]="{status_selected: active}" class="cardmain">
   <div *ngIf="cardStatus" class="status status-{{cardStatus.substring(0,3).toUpperCase()}}">
     <div class="row">
       <div class="status-text text-left col-md-12" *ngIf="cardStatus">{{cardStatus.toUpperCase()}}</div>
