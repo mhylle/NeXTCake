@@ -5,8 +5,7 @@
     <div><img src="../../../../assets/Chocolate_Nutella_Cake3.jpg" height="300"></div>
   </div>
   <div *ngIf="!currentCake">
-    <div>Næste gang der er kage er:
-    </div>
+    <div><h3>Næste gang der er kage er:</h3> </div>
     <!--<div style="float: right;margin-right: 150px; z-index: -1;clear: both"><img src="../../../../assets/crumbles.png" height="300"></div>-->
     <div class="hit-the-floor-small" *ngIf="nextCake">{{nextCake.datetime | date: 'EEEE dd/MM/yyyy'}} kl.
       {{nextCake.datetime | date: 'HH:mm'}}
@@ -23,9 +22,9 @@
   </div>
 
 
-  <div *ngIf="cakeGivings && !currentCake">
-    I denne uge for vi {{cakeGivings.length}} kager eksklusiv fredags kagen.
-  </div>
+  <!--<div *ngIf="cakeGivings && !currentCake">-->
+    <!--I denne uge får vi {{cakeGivings.length}} kager eksklusiv fredags kagen.-->
+  <!--</div>-->
   <div *ngIf="!cakeGivings">
     Der bliver ikke givet kage i den her uge :(
   </div>
