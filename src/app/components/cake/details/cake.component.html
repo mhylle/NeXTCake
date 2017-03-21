@@ -1,24 +1,29 @@
-<div class="text-center" style="margin-top:100px">
-  <div *ngIf="currentCake" class="hit-the-floor">YAY! Der er kage nu! </div>
-<div *ngIf="!currentCake">
-  <div>Næste gang der er kage er:
+<div class="text-center cookie" [ngClass]="{cookie: !currentCake}" style="margin-top:100px;   ">
+  <div *ngIf="currentCake">
+    <div class="hit-the-floor">Jubii!</div>
+    <div class="hit-the-floor-small">Der er kage i {{currentCake.location}} nu!</div>
+    <div><img src="../../../../assets/Chocolate_Nutella_Cake3.jpg" height="300"></div>
   </div>
-  <div class="hit-the-floor-small" *ngIf="nextCake">{{nextCake.datetime | date: 'EEEE dd/MM/yyyy'}} kl.
-    {{nextCake.datetime | date: 'HH:mm'}}
+  <div *ngIf="!currentCake">
+    <div>Næste gang der er kage er:
+    </div>
+    <!--<div style="float: right;margin-right: 150px; z-index: -1;clear: both"><img src="../../../../assets/crumbles.png" height="300"></div>-->
+    <div class="hit-the-floor-small" *ngIf="nextCake">{{nextCake.datetime | date: 'EEEE dd/MM/yyyy'}} kl.
+      {{nextCake.datetime | date: 'HH:mm'}}
+    </div>
+    <div>
+      <span *ngIf="nextCake">Kagen serveres i {{nextCake.location}}</span>
+      <span *ngIf="nextCake && nextCake.giver">af {{nextCake.giver}}.</span>
+    </div>
+
+    <div>Der er nu:</div>
+    <div><span class="hit-the-floor">{{hoursRemaining}}:{{minutesRemaining}}:{{secondsRemaining}}</span></div>
+
+    <div class="lowercake">Til at kagen serveres.</div>
   </div>
-  <div>
-    <span *ngIf="nextCake">Kagen serveres i {{nextCake.location}}</span>
-    <span *ngIf="nextCake && nextCake.giver">af {{nextCake.giver}}.</span>
-  </div>
-
-  <div>Der er nu:</div>
-  <div><span class="hit-the-floor">{{hoursRemaining}}:{{minutesRemaining}}:{{secondsRemaining}}</span></div>
-
-  <div class="lowercake">Til at kagen serveres.</div>
-</div>  <div><img src="../../../../assets/Chocolate_Nutella_Cake3.jpg" height="300"></div>
 
 
-  <div *ngIf="cakeGivings">
+  <div *ngIf="cakeGivings && !currentCake">
     I denne uge for vi {{cakeGivings.length}} kager eksklusiv fredags kagen.
   </div>
   <div *ngIf="!cakeGivings">
