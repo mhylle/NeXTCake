@@ -6,13 +6,12 @@
   </div>
   <div *ngIf="!currentCake">
     <div><h3>Næste gang der er kage er:</h3> </div>
-    <!--<div style="float: right;margin-right: 150px; z-index: -1;clear: both"><img src="../../../../assets/crumbles.png" height="300"></div>-->
     <div class="hit-the-floor-small" *ngIf="nextCake">{{nextCake.datetime | date: 'EEEE dd/MM/yyyy'}} kl.
       {{nextCake.datetime | date: 'HH:mm'}}
     </div>
     <div>
-      <span *ngIf="nextCake">Kagen serveres i {{nextCake.location}}</span>
-      <span *ngIf="nextCake && nextCake.giver">af {{nextCake.giver}}.</span>
+      <span *ngIf="nextCake"><h4>Kagen serveres i {{nextCake.location}}</h4></span>
+      <span *ngIf="nextCake && nextCake.giver"><h3>af {{nextCake.giver}}.</h3></span>
     </div>
 
     <div>Der er nu:</div>

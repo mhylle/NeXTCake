@@ -4,5 +4,6 @@ export interface CakeGiving {
   time: any;
   datetime?: Date;
   location?: string;
-  giver?: string
+  giver?: string;
+  type?: string;
 }
