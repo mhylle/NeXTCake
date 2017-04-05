@@ -2,7 +2,7 @@
   <div *ngIf="currentCake">
     <div class="hit-the-floor">Jubii!</div>
     <div class="hit-the-floor-small">Der er kage i {{currentCake.location}} nu!</div>
-    <div><img src="../../../../assets/Chocolate_Nutella_Cake3.jpg" height="300"></div>
+    <div><img src="../../../../assets/Chocolate_Nutella_Cake3.jpg" height="300px"></div>
   </div>
   <div *ngIf="!currentCake">
     <div><h3>Næste gang der er kage er:</h3> </div>
@@ -10,8 +10,8 @@
       {{nextCake.datetime | date: 'HH:mm'}}
     </div>
     <div>
-      <span *ngIf="nextCake"><h4>Kagen serveres i {{nextCake.location}}</h4></span>
-      <span *ngIf="nextCake && nextCake.giver"><h3>af {{nextCake.giver}}.</h3></span>
+      <h4><span *ngIf="nextCake">Kagen serveres i {{nextCake.location}}</span></h4>
+      <h3><span *ngIf="nextCake && nextCake.giver">af {{nextCake.giver}}.</span></h3>
     </div>
 
     <div>Der er nu:</div>
