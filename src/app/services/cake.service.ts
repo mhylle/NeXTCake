@@ -34,4 +34,10 @@ export class CakeService {
     headers.append('Content-Type', 'application/json');
     return this.http.post(this.cakeGivingsUrl + '?apiKey=' + this.apiKey, JSON.stringify(newCakeGiving), {headers: headers});
   }
+
+  removeCakeGiving(cakeId) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.delete(this.cakeGivingsUrl + '?apiKey=' + this.apiKey, JSON.stringify(cakeId), {headers: headers});
+  }
 }

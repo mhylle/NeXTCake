@@ -7,12 +7,13 @@
       <a href="#" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bars" aria-hidden="true"></i></a>
       <ul class="dropdown-menu">
         <li><a href="#" (click)="doAddCake()">Add cake</a></li>
+        <li><a href="#" (click)="doDeleteCake()">Delete cake</a></li>
       </ul>
     </li>
   </ul>
 </nav>
 <nextcake></nextcake>
-<modal #addCake (onClose)="closed()">
+<modal #addCake (onClose)="addCakeclosed()">
   <form #modalForm="ngForm">
     <modal-body>
       <mhcard [cardStatus]="cardStatus" [cardName]="">
@@ -50,6 +51,28 @@
       <button type="button" class="btn btn-default" data-dismiss="modal" (click)="addCake.dismiss()">Fortryd
       </button>
       <button type="button" class="btn btn-primary" [disabled]="!modalForm.valid" (click)="addCake.close()">Gem
+      </button>
+    </modal-footer>
+  </form>
+</modal>
+<modal #deleteCake>
+  <form #modalForm="ngForm">
+    <modal-body>
+      <mhcard [cardStatus]="cardStatus" [cardName]="">
+        <div class="row" *ngFor="let cake of cakes">
+          <div class="col-md-1"></div>
+          <div class="col-md-1">CakeId:</div>
+          <div class="col-md-5">{{cake._id}}</div>
+          <div class="col-md-2">{{cake.giver}}</div>
+          <div class="col-md-1">{{cake.time}}</div>
+          <div class="col-md-1"(click)="deleteCake(cake.id)" style="cursor: hand">X</div>
+        </div>
+      </mhcard>
+    </modal-body>
+    <modal-footer>
+      <button type="button" class="btn btn-default" data-dismiss="modal" (click)="deleteCake.dismiss()">Fortryd
+      </button>
+      <button type="button" class="btn btn-primary" [disabled]="!modalForm.valid" (click)="deleteCake.close()">Gem
       </button>
     </modal-footer>
   </form>
