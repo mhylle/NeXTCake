@@ -62,10 +62,10 @@
         <div class="row" *ngFor="let cake of cakes">
           <div class="col-md-1"></div>
           <div class="col-md-1">CakeId:</div>
-          <div class="col-md-5">{{cake._id}}</div>
+          <div class="col-md-5">{{cake._id.$oid}}</div>
           <div class="col-md-2">{{cake.giver}}</div>
           <div class="col-md-1">{{cake.time}}</div>
-          <div class="col-md-1"(click)="deleteCake(cake.id)" style="cursor: hand">X</div>
+          <div class="col-md-1"(click)="deleteCake(cake._id)" style="cursor: hand">X</div>
         </div>
       </mhcard>
     </modal-body>

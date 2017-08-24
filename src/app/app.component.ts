@@ -68,7 +68,6 @@ export class AppComponent implements OnInit {
 
   deleteCake(cakeId: string) {
     this.cakeService.removeCakeGiving(cakeId).subscribe(res => {
-      console.log("deletecake" + res.json());
       res.json();
     })
   }
