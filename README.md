@@ -1,5 +1,18 @@
 # NexXTCake
 
+<!-- Badges section here. -->
+[![Build Status](https://travis-ci.org/mhylle/NeXTCake.svg?branch=master)](https://travis-ci.org/mhylle/NeXTCake)
+
+[![Dependency Status](https://david-dm.org/mhylle/NeXTCake.svg)](https://david-dm.org/mhylle/NeXTCake.svg)
+
+
+[![npm](https://img.shields.io/npm/v/npm.svg)]()
+
+<!--[![npm](https://img.shields.io/npm/v/%40angular/cli/next.svg)][npm-badge-url]-->
+<!--[![npm](https://img.shields.io/npm/l/@angular/cli.svg)][npm-badge-url]-->
+<!--[![npm](https://img.shields.io/npm/dm/@angular/cli.svg)][npm-badge-url]-->
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.1.
 
 ## Development server
